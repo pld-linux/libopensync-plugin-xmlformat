@@ -12,6 +12,7 @@ BuildRequires:	check-devel
 BuildRequires:	cmake
 BuildRequires:	glib2-devel >= 1:2.4
 BuildRequires:	libopensync-devel >= 1:%{version}
+BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
