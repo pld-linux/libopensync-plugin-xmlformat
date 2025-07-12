@@ -2,7 +2,7 @@ Summary:	OpenSync xmlformat Plugin
 Summary(pl.UTF-8):	Wtyczka xmlformat dla szkieletu OpenSync
 Name:		libopensync-plugin-xmlformat
 Version:	0.39
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Source0:	http://www.opensync.org/download/releases/%{version}/%{name}-%{version}.tar.bz2
