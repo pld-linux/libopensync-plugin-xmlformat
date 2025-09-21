@@ -3,17 +3,22 @@ Summary(pl.UTF-8):	Wtyczka xmlformat dla szkieletu OpenSync
 Name:		libopensync-plugin-xmlformat
 Version:	0.39
 Release:	3
-License:	LGPL
+License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://www.opensync.org/download/releases/%{version}/%{name}-%{version}.tar.bz2
+# originally http://www.opensync.org/download/releases/%{version}/%{name}-%{version}.tar.bz2
+Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	cd0563bb78b50f846b5970b360a49213
-URL:		http://www.opensync.org/
+# dead domain
+#URL:		http://www.opensync.org/
 BuildRequires:	check-devel
-BuildRequires:	cmake
+BuildRequires:	cmake >= 2.4.4
 BuildRequires:	glib2-devel >= 1:2.4
 BuildRequires:	libopensync-devel >= 1:%{version}
-BuildRequires:	libxml2-devel
+BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.605
+Requires:	glib2 >= 1:2.4
+Requires:	libopensync >= 1:%{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,19 +43,15 @@ Ten pakiet zawiera wtyczkę xmlformat dla szkieletu OpenSync.
 %setup -q
 
 %build
-mkdir build
+install -d build
 cd build
-%cmake .. \
-	-DCMAKE_BUILD_TYPE=%{!?debug:Release}%{?debug:Debug} \
-	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
-%if "%{_lib}" == "lib64"
-	-DLIB_SUFFIX=64
-%endif
+%cmake ..
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
