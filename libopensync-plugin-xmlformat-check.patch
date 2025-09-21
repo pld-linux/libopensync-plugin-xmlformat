@@ -1,0 +1,25 @@
+--- libopensync-plugin-xmlformat-0.39/tests/support.h.orig	2009-09-20 22:33:27.000000000 +0200
++++ libopensync-plugin-xmlformat-0.39/tests/support.h	2025-09-21 13:33:21.758817355 +0200
+@@ -11,5 +11,5 @@
+ 
+ char *setup_testbed(const char *fkt_name);
+ void destroy_testbed(char *path);
+-void create_case(Suite *s, const char *name, TFun function);
++void create_case(Suite *s, const char *name, TTest *test);
+ 
+--- libopensync-plugin-xmlformat-0.39/tests/support.c.orig	2009-09-20 22:33:27.000000000 +0200
++++ libopensync-plugin-xmlformat-0.39/tests/support.c	2025-09-21 13:33:44.002283980 +0200
+@@ -76,11 +76,11 @@ void destroy_testbed(char *path)
+ 	g_free(path);
+ }
+ 
+-void create_case(Suite *s, const char *name, TFun function)
++void create_case(Suite *s, const char *name, TTest *test)
+ {
+ 	TCase *tc_new = tcase_create(name);
+ 	tcase_set_timeout(tc_new, 30);
+ 	suite_add_tcase (s, tc_new);
+-	tcase_add_test(tc_new, function);
++	tcase_add_test(tc_new, test);
+ }
+ 
